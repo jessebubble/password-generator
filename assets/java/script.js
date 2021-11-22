@@ -3,7 +3,7 @@
 // WHEN I click the button to generate a password
 var generatePasswordPrompt = window.confirm("Lets create your password"); 
 
-// Lowercase, Uppercase, Numbers and Special Characters 
+// Letters including both lowercase and Uppercase, Numbers and Special Characters 
     var letters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
     var numbers = "1234567890";
     var special = "!@#$%^&*_+=-\/?,.><";
@@ -39,11 +39,11 @@ function generatePassword () {
     password += tempPassword[index];
   }
 
+// Display Password on Page - RETURN
   return password;
 }
 
-// NEW FUNCTION - Validate Input
-
+// NEW FUNCTION - Validate Input - Return prompt if wrong password length selected
 function setPasswordLength() {
   passwordLength = window.prompt("Password length must be between 8 and 128 characters.");
   passwordLength = parseInt(passwordLength);
@@ -57,9 +57,7 @@ function setPasswordLength() {
   }
 }
 
-
-// NEW FUNCTION - Validate Criteria met - Series of prompts for password criteria 
-
+// NEW FUNCTION - Validate Criteria met - Prompt the user for password criteria 
 function verifyPasswordCriteria() {
   if(passwordLength >=8 && passwordLength <=128) {
     var ilowercase = window.confirm("Click OK to include lowercase letters in your password");
@@ -114,17 +112,6 @@ function verifyPasswordCriteria() {
     }
   }
 
-
-//Prompt the user for password criteria 
-
-
-
-
-// Display Password on Page - RETURN
-  
-
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
 // test
