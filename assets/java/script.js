@@ -1,52 +1,130 @@
 // Assignment code here
 
-// Create function for generatePassword because its being called in the writePassword function
-function generatePassword () {
-
 // WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria 
-var generatePasswordPrompt = window.prompt("Lets create your password"); 
-  character = window.prompt('How many characters would you like your password to have?');
-  lowercase = window.prompt('Click OK to include lowercase letters in your password');
-  uppercase = window.prompt('Click OK to include Uppercase letters in your password');
-  numbers = window.prompt('Click OK to include Numbers in your password');
-  special = window.prompt('Click OK to include Special Characters in your password');
+var generatePasswordPrompt = window.confirm("Lets create your password"); 
 
-
-// Password length 8 characters and no more than 128 characters
 // Lowercase, Uppercase, Numbers and Special Characters 
-    var characterMin = 8;
-    var characterMax = 128;
-    var lowercase = "qwertyuiopasdfghjklzxcvbnm";
-    var uppercase = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    var letters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
     var numbers = "1234567890";
-    var special = "!@#$%^&*()_+-=";
-
-//Prompt the user for password criteria 
-while (characterMin <8 || characterMax > 128) {
-  character = prompt("Length must be 8-128 characters. How many characters would you like your password to have?");
-}
-
-// Validate Input
-
-// Validate Criteria met
-
-
-// Display Password on Page - RETURN
-  }
-
+    var special = "!@#$%^&*_+=-\/?,.><";
+    
+    var tempPassword = "";
+    var passwordLength = "";
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-
-// Write password to the #password input
+// NEW FUNCTION - Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+
+  return generateBtn.disabled = false;
 }
+
+// NEW FUNCTION - create function for generatePassword because its being called in the writePassword function
+function generatePassword () {
+  tempPassword = "";
+  passwordLength = "";
+  generateBtn.disabled = true;
+  setPasswordLength();
+  verifyPasswordCriteria();
+
+  var password ="";
+
+  for(i=0; i < passwordLength; i++) {
+    var index = (Math.floor(Math.random() * tempPassword.length));
+    password += tempPassword[index];
+  }
+
+  return password;
+}
+
+// NEW FUNCTION - Validate Input
+
+function setPasswordLength() {
+  passwordLength = window.prompt("Password length must be between 8 and 128 characters.");
+  passwordLength = parseInt(passwordLength);
+
+  if(isNaN(passwordLength)) {
+    window.alert("This is not a number, Try Again.");
+    return generatePassword();
+  }
+  else {
+    return passwordLength;
+  }
+}
+
+
+// NEW FUNCTION - Validate Criteria met - Series of prompts for password criteria 
+
+function verifyPasswordCriteria() {
+  if(passwordLength >=8 && passwordLength <=128) {
+    var ilowercase = window.confirm("Click OK to include lowercase letters in your password");
+    var iuppercase = window.confirm("Click OK to include Uppercase letters in your password");
+    var inumbers = window.confirm("Click OK to include Numbers in your password");
+    var ispecial = window.confirm("Click OK to include Special Characters in your password");
+
+    var verifyCriteriaSelected = ilowercase + iuppercase + inumbers + ispecial;
+
+    if(verifyCriteriaSelected >= 1) {
+
+// include LOWERCASE
+      if(ilowercase) {
+        for (i = 0; i < letters.length; i++) {
+          tempPassword += letters[i];
+          tempPassword = tempPassword.toLowerCase();
+
+        }
+      }
+
+// include UPPERCASE
+      if(iuppercase) {
+        for(i=0; i < letters.length; i++) {
+          tempPassword += letters[i];
+        }
+      }
+
+// include NUMBERS
+      if(inumbers) {
+        for(i=0; i < numbers.length; i++) {
+          tempPassword += numbers[i];
+        }
+      }
+
+// include SPECIAL characters 
+      if(ispecial) {
+        for(i=0; i < special.length; i++) {
+          tempPassword += special[i];
+        }
+      }
+      return tempPassword;
+    }
+  
+    else {
+      window.alert("You MUST include one type of character - lowercase/uppercase - for your password");
+      return verifyPasswordCriteria();
+    }
+  }
+    else {
+      window.alert("Password length MUST be between 8 and 128 characters. Try Again.");
+      return generatePassword();
+    }
+  }
+
+
+//Prompt the user for password criteria 
+
+
+
+
+// Display Password on Page - RETURN
+  
+
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
 // test
