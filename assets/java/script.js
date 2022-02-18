@@ -1,117 +1,78 @@
-// Assignment code here
+var generatePasswordPrompt = window.alert('Welcome to my password generator'); // Welcome to my password generator
 
-// WHEN I click the button to generate a password
-var generatePasswordPrompt = window.confirm("Lets create your password"); 
+var randomShuffle = function (string) { // shuffle any string
+  var randomIndex, currentIndex, array; // declare the variables
+  array = string.split(''); // convert string into array
 
-// Letters including both lowercase and Uppercase, Numbers and Special Characters 
-    var letters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-    var numbers = "1234567890";
-    var special = "!@#$%^&*_+=-\/?,.><";
-    
-    var tempPassword = "";
-    var passwordLength = "";
+  for (var i = 0; i < array.length; i++) { // loop through array
+    randomIndex = Math.floor(Math.random() * array.length); // creates random number for array
+    currentIndex = array[i] // swap
+    array[i] = array[randomIndex]
+    array[randomIndex] = currentIndex;
+  }
+  string = array.join('') // turns array back into string
+  return string;
+}
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+var generatePassword = function () { //generate password using strings in variables below
+  var uppercase = 'QWERTYUIOPASDFGHJKLZXCVBNM'
+  var lowercase = 'qwertyuiopasdfghjklzxcvbnm'
+  var numbers = '1234567890'
+  var special = '!@#$%^&*_+=-?,.'
+  
+  var valid =  false;
+  while (!valid) { // presents user with series of prompts to generate password
+    var passwordLength = parseInt(window.prompt('How many characters are required for your password'))
+    var includeLowerCase = window.confirm('Click OK to include lowercase characters')
+    var includeUpperCase = window.confirm('Click OK to include uppercase characters')
+    var includeNumbers = window.confirm('Click OK to include numbers')
+    var includeSpecial = window.confirm('Click OK to include special characters')
 
-// NEW FUNCTION - Write password to the #password input
+    if (passwordLength < 8 || passwordLength > 128) {
+      window.alert('Password must be between 8 and 128 characters')
+    }
+    else if (!includeLowerCase && !includeUpperCase && !includeNumbers && !includeSpecial) {
+      window.alert('Requirement: must include one of the prompts')
+    }
+    else {
+      valid = true
+    }
+  }
+
+  var password = ''; // filter out declined confirmations from promps above
+  if (includeLowerCase) {
+    password += lowercase
+  }
+  if (includeUpperCase) {
+    password += uppercase
+  }
+  if (includeNumbers) {
+    password += numbers
+  }
+  if (includeSpecial) {
+    password += special
+  }
+
+  password = randomShuffle(password) // shuffle string created from function above
+
+  var randomNum;
+  var generatedPassword = '' // password generated based on selected prompts
+  var index = 0
+  
+  while (index < passwordLength) { // loop through passwordLength
+    randomNum = Math.floor(Math.random() * password.length); // generates random number
+    generatedPassword += password[randomNum]
+    index++
+  }
+  return generatedPassword;
+}
+var generateBtn = document.querySelector("#generate"); // references generate element
+
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
-  return generateBtn.disabled = false;
 }
 
-// NEW FUNCTION - create function for generatePassword because its being called in the writePassword function
-function generatePassword () {
-  tempPassword = "";
-  passwordLength = "";
-  generateBtn.disabled = true;
-  setPasswordLength();
-  verifyPasswordCriteria();
-
-  var password ="";
-
-  for(i=0; i < passwordLength; i++) {
-    var index = (Math.floor(Math.random() * tempPassword.length));
-    password += tempPassword[index];
-  }
-
-// Display Password on Page - RETURN
-  return password;
-}
-
-// NEW FUNCTION - Validate Input - Return prompt if wrong password length selected
-function setPasswordLength() {
-  passwordLength = window.prompt("Password length must be between 8 and 128 characters.");
-  passwordLength = parseInt(passwordLength);
-
-  if(isNaN(passwordLength)) {
-    window.alert("This is not a number, Try Again.");
-    return generatePassword();
-  }
-  else {
-    return passwordLength;
-  }
-}
-
-// NEW FUNCTION - Validate Criteria met - Prompt the user for password criteria 
-function verifyPasswordCriteria() {
-  if(passwordLength >=8 && passwordLength <=128) {
-    var ilowercase = window.confirm("Click OK to include lowercase letters in your password");
-    var iuppercase = window.confirm("Click OK to include Uppercase letters in your password");
-    var inumbers = window.confirm("Click OK to include Numbers in your password");
-    var ispecial = window.confirm("Click OK to include Special Characters in your password");
-
-    var verifyCriteriaSelected = ilowercase + iuppercase + inumbers + ispecial;
-
-    if(verifyCriteriaSelected >= 1) {
-
-// include LOWERCASE
-      if(ilowercase) {
-        for (i = 0; i < letters.length; i++) {
-          tempPassword += letters[i];
-          tempPassword = tempPassword.toLowerCase();
-
-        }
-      }
-
-// include UPPERCASE
-      if(iuppercase) {
-        for(i=0; i < letters.length; i++) {
-          tempPassword += letters[i];
-        }
-      }
-
-// include NUMBERS
-      if(inumbers) {
-        for(i=0; i < numbers.length; i++) {
-          tempPassword += numbers[i];
-        }
-      }
-
-// include SPECIAL characters 
-      if(ispecial) {
-        for(i=0; i < special.length; i++) {
-          tempPassword += special[i];
-        }
-      }
-      return tempPassword;
-    }
-  
-    else {
-      window.alert("You MUST include one type of character - lowercase/uppercase - for your password");
-      return verifyPasswordCriteria();
-    }
-  }
-    else {
-      window.alert("Password length MUST be between 8 and 128 characters. Try Again.");
-      return generatePassword();
-    }
-  }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-// test
+generateBtn.addEventListener("click", writePassword); // Event listener to generate button
