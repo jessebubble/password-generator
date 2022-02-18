@@ -2,27 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho&effect=anaglyph|fire-animation|outline|3d">
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <script src="https://kit.fontawesome.com/cdc1b65943.js" crossorigin="anonymous"></script>
     <title>Password Generator</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   
   <body>
     <div class="wrapper">
-      
+      <!-- HEADER -->
       <header>
-        <h1>Password Generator</h1>
+        <div class="font-effect-3d">WELCOME</div>
+        <div class="font-effect-anaglyph">Password Generator</div>
+        <div class="font-effect-3d">by jessebubble</div>
+        <!-- <h1>Password Generator</h1> -->
       </header>
       
       <div class="card">
-        <div class="card-header"> <!-- header -->
-          <h2>Generate a Password</h2>
+        <div class="card-header"> 
+          <div class="font-effect-outline">Generate a Password</div>
+          <br>
+         <!-- <h2>Generate a Password</h2> -->
         </div>
-        <div class="card-body"> <!-- body -->
+        <div class="card-body">
           <textarea 
             readonly id="password"
-            placeholder="Your Secure Password"
+            placeholder="Your new secure password"
             aria-label="Generated Password"
           ></textarea>
         </div>

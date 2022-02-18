@@ -1,4 +1,4 @@
-var generatePasswordPrompt = window.alert('Welcome to my password generator'); // Welcome to my password generator
+//var generatePasswordPrompt = window.alert('Welcome to my password generator'); // Welcome to my password generator
 
 var randomShuffle = function (string) { // shuffle any string
   var randomIndex, currentIndex, array; // declare the variables

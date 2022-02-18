@@ -30,6 +30,22 @@ header {
   color: hsl(205, 60%, 8%);
 }
 
+.font-effect-anaglyph {
+  font-size: xx-large
+}
+
+.font-effect-3d {
+  font-size: xx-large;
+}
+
+.font-effect-fire-animation {
+  font-size: xx-large;
+}
+
+.font-effect-outline {
+  font-size: xx-large;
+}
+
 .card {
   background-color: hsl(0, 25%, 3%);
   border-radius: 5px;
@@ -86,6 +102,10 @@ header {
   padding: 14px 34px;
   text-align: center;
   cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(146, 0, 7);
 }
 
 button[disabled] {
