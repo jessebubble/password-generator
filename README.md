@@ -7,7 +7,7 @@
 
 ## Resources
 * [Special Characters](https://owasp.org/www-community/password-special-characters)
-* [Fireship Javascript Playlisy](https://www.youtube.com/playlist?list=PL0vfts4VzfNixzfaQWwDUg3W5TRbE7CyI)
+* [Fireship Javascript Playlist](https://www.youtube.com/playlist?list=PL0vfts4VzfNixzfaQWwDUg3W5TRbE7CyI)
 ## Sample
 ![screenshot](./assets/images/screenshot.png)
 
