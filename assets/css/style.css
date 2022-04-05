@@ -4,37 +4,25 @@
   box-sizing: border-box;
 }
 
-html,
-body,
-.wrapper {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: sans-serif;
-  background-color: rgb(241, 239, 235)
-}
-
-.wrapper {
-  padding-top: 30px;
+body, .wrapper {
+/*   padding-top: 30px;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 20px; */
+  background-image: url('../images/markus-spiske-uPXs5Vx5bIg-unsplash.jpg');
+  background-size: 1234567px;
+  background-attachment:fixed;
+  background-position: -80% -70% ;
 }
-
 header {
   text-align: center;
   padding: 20px;
   padding-top: 0px;
-  color: hsl(205, 60%, 8%);
 }
-
 .font-effect-anaglyph {
   font-size: xx-large
 }
 
-.font-effect-3d {
+/* .font-effect-3d {
   font-size: xx-large;
 }
 
@@ -44,7 +32,7 @@ header {
 
 .font-effect-outline {
   font-size: xx-large;
-}
+} */
 
 .card {
   background-color: hsl(0, 25%, 3%);
@@ -56,8 +44,24 @@ header {
   margin: 0 auto;
   max-width: 800px;
   padding: 30px 40px;
+  display: flexbox;
+
+}
+.card-header {
+  text-align: center;
+  background-image: linear-gradient(90deg, rgba(94,114,235,1) 0%, rgba(255,145,144,1) 56%, rgba(254,193,149,1) 100%);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  animation: move 1s infinite;
 }
 
+@keyframes move {
+  50% {
+    background-image: linear-gradient(262deg, rgba(94,114,235,1) 0%, rgba(255,145,144,1) 56%, rgba(254,193,149,1) 100%);
+  }
+}
 .card-header::after {
   content: " ";
   display: block;
@@ -90,7 +94,7 @@ header {
 
 .btn {
   border: none;
-  background-color: hsl(360, 91%, 36%);
+  background-color: rgb(140, 3, 156);
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
     0px;
@@ -105,16 +109,14 @@ header {
 }
 
 .btn:hover {
-  background-color: rgb(146, 0, 7);
+  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+  background-image: linear-gradient(to right, #895cf2 0%, #ffabf4 50%, #895cf2 100%);
+  transition: 0.5s;
 }
 
 button[disabled] {
   cursor: default;
   background: #c0c7cf;
-}
-
-.float-right {
-  float: right;
 }
 
 #password {
@@ -155,3 +157,15 @@ button[disabled] {
     font-size: 0.8rem;
   }
 }
+
+/* html,
+body,
+.wrapper {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+} */
+
+/* .float-right {
+  float: right;
+} */
